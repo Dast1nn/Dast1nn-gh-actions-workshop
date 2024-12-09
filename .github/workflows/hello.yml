@@ -1,7 +1,9 @@
 name: Hello World Training Workflow
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: # Triggered manually
+  issues:            # Triggered on issue events
+    types: [opened, edited] # Specify the events (issue opened or edited)
 
 jobs:
   greet:
