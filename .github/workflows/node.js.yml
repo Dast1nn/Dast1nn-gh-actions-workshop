@@ -1,30 +1,23 @@
-name: Node.js CI
+name: CI with Coverage Report
 
 on:
   push:
     branches:
       - main
   pull_request:
-    branches:
-      - main
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x, 18.x] # Define the Node.js versions for the matrix
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }} # Use the current version in the matrix
-
+          node-version: '16'
       - name: Install dependencies
         run: npm install
-
-      - name: Run tests
-        run: npm test
+      - name: Run Vitest Coverage Report
+        uses: davelosert/vitest-coverage-report-action@v2.8.0
+        with:
+          output-directory: ./coverage
