@@ -2,10 +2,12 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
-    coverage: {
-      provider: 'istanbul', // You can use 'c8' as an alternative
-      reporter: ['text', 'lcov', 'html'], // Generates text, LCOV, and HTML reports
-      reportsDirectory: './coverage', // Specify where coverage reports should be saved
-    },
+coverage: {
+  reporter: ["text", "json", "json-summary"],
+  lines: 100,
+  branches: 100,
+  functions: 100,
+  statements: 100
+},
   },
 });
