@@ -6,6 +6,8 @@ on:
 jobs:
   greet:
     runs-on: ubuntu-latest
+    env:
+      MY_ENV: "John Doe" # Add custom environment variable
     steps:
       - name: Greet the User
         run: echo "Hello World!"
@@ -21,3 +23,9 @@ jobs:
       # List all files in the current directory after checkout
       - name: List files after checkout
         run: ls -l
+      
+      # Use environment variables in a multi-line script
+      - name: Run a multi-line script
+        run: |
+          echo "Hello $MY_ENV"
+          echo "Hello $GITHUB_ACTOR"
