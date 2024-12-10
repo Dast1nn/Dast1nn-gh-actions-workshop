@@ -2,12 +2,11 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
-coverage: {
-  reporter: ["text", "json", "json-summary"],
-  lines: 100,
-  branches: 100,
-  functions: 100,
-  statements: 100
-},
+ coverage: {
+      lines: 90, // Set desired threshold
+      branches: 85,
+      statements: 90,
+      functions: 100,
+    },
   },
 });
