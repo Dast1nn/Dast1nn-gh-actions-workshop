@@ -1,12 +1,24 @@
-import { defineConfig } from 'vitest/config';
+/// <reference types="vitest" />
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
+// https://vitejs.dev/config/
 export default defineConfig({
-  test: {
- coverage: {
-      lines: 90, // Set desired threshold
-      branches: 85,
-      statements: 90,
-      functions: 100,
+  plugins: [react()],
+  build: {
+    commonjsOptions: {
+      transformMixedEsModules: true,
     },
+  },
+  test: {
+    environment: "jsdom",
+coverage: {
+  reporter: ["text", "json", "json-summary"],
+  lines: 100,
+  branches: 100,
+  functions: 100,
+  statements: 100
+},
+    setupFiles: ["./test/setup.ts"],
   },
 });
